@@ -13,7 +13,6 @@ interface ScheduleProps {
   }
 }
 export default function Schedule({ user }: ScheduleProps) {
-  // colocar a biblioteca Satori, tendo em vista que o opengrafique é pra informar a imagem para o confornto
   return (
     <>
       <NextSeo title={`Agendar com ${user.name} | Ignite Call`} />
@@ -36,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-// renderizando uma pagina statica que atualiza a cada 24 horas
+// render static page in 24 hours 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const username = String(params?.username)
 

@@ -10,9 +10,7 @@ export default async function handle(
     return res.status(404).end()
   }
 
-  // retorno da URL
   const username = String(req.query.username)
-  // Data selecionada
   const { date } = req.query
 
   if (!date) {
@@ -31,14 +29,12 @@ export default async function handle(
 
   const referenceDate = dayjs(String(date))
 
-  // verificação se a data já passou
   const isPastDate = referenceDate.endOf('day').isBefore(new Date())
 
   if (isPastDate) {
     return res.json({ possibleTimes: [], availabeTimes: [] })
   }
 
-  // buscando disponibilidade do dia
   const userTimeAvailability = await prisma.userTimeInterval.findFirst({
     where: {
       user_id: user.id,
@@ -55,14 +51,14 @@ export default async function handle(
   const startHour = time_start_in_minutes / 60
   const endHour = time_end_in_minutes / 60
 
-  // retorna a possibilidade para marcar horário
+  // hour checked
   const possibleTimes = Array.from({
     length: endHour - startHour,
   }).map((_, i) => {
     return startHour + i
   })
 
-  // buscando as horas que já foram marcadas
+  // hours blockeds
   const blockedTimes = await prisma.scheduling.findMany({
     select: {
       date: true,
@@ -76,7 +72,6 @@ export default async function handle(
     },
   })
 
-  // validação de horario marcado
   const availabeTimes = possibleTimes.filter((time) => {
     const isTimeBlocked = blockedTimes.some(
       (blockedTime) => blockedTime.date.getHours() === time,
@@ -87,6 +82,5 @@ export default async function handle(
     return !isTimeBlocked && !isTimePassed
   })
 
-  // no next só é retornado esse tipo e como json
   return res.json({ possibleTimes, availabeTimes })
 }

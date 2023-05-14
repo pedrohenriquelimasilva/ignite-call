@@ -73,12 +73,10 @@ export default function TimeIntervals() {
     register,
     control,
     handleSubmit,
-    // é o useState dinamico do useForm
     watch,
     formState: { isSubmitting, errors },
   } = useForm<TimeIntervalsFormInput>({
     resolver: zodResolver(timeIntervalsFormSchema),
-    // setar um array padrão dentro do formulario
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },

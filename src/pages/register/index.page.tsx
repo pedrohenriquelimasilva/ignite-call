@@ -27,7 +27,6 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    // setValue é uma funcionalidade que modifica, dinâmicamente, um valor do schema do formulario a qualquer momento
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({

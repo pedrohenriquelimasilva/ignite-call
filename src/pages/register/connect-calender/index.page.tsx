@@ -15,7 +15,6 @@ export default function ConnectCalender() {
 
   const isSignedIn = session.status === 'authenticated'
 
-  // depois criar verificação se o signIn / email já está vinculado a alguma pessoa
   async function handleConnect() {
     await signIn('google')
   }

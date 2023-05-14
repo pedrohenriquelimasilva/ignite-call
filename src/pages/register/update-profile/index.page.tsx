@@ -46,7 +46,7 @@ export default function UpdateProfile() {
     await router.push(`/schedule/${session.data?.user.username}`)
   }
   return (
-    // essa é a forma de adicionar SEO ao nextJS
+    // native SEO of nextjs (next-seo)
     <>
       <NextSeo title="Finalizando cadastro | Ignite Call" noindex />
       <Container>

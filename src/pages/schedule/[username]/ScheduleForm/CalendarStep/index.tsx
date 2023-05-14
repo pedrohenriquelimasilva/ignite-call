@@ -39,7 +39,6 @@ export function CalendarStep({ onSelectedDateTime }: CalendarProps) {
     ? dayjs(selectedDate).format('YYYY-MM-DD')
     : null
 
-  // metodo para fazermos chamadas e deixar o mesmo no cache, para não necessitar de uma nova chamada. Mais utilizado com rotas get
   const { data: availability } = useQuery<AvailabilitySchema>(
     ['availability', selectedDateWithoutTime],
     async () => {

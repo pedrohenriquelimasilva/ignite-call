@@ -72,6 +72,7 @@ export default async function handle(
     auth: await getGoogleOAuthToken(user.id),
   })
 
+  // create calendar event more google.meet
   await calendar.events.insert({
     calendarId: 'primary',
     conferenceDataVersion: 1,

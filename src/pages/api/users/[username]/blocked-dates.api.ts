@@ -10,9 +10,7 @@ export default async function handle(
     return res.status(404).end()
   }
 
-  // retorno da URL
   const username = String(req.query.username)
-  // ano e mês selecionada
   const { year, month } = req.query
 
   if (!year || !month) {
@@ -38,7 +36,6 @@ export default async function handle(
     },
   })
 
-  // Dias que não foram selecionados
   const blockedWeekDays = [0, 1, 2, 3, 4, 5, 6].filter((weekDay) => {
     return !availableWeekDays.some(
       (availableWeekDay) => availableWeekDay.week_day === weekDay,
@@ -47,7 +44,6 @@ export default async function handle(
 
   const yearAndMonth = `${year}-${String(month).padStart(2, '0')}`
 
-  // query no banco para buscar todos os dias que possuem horário já marcados e que precisam ser bloqueados no calendario
   const blockedDatesRaw: Array<{ date: number }> = await prisma.$queryRaw`
     SELECT 
       EXTRACT(DAY FROM S.date) AS date,
