@@ -35,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-// render static page in 24 hours 
+// render static page in 24 hours
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const username = String(params?.username)
 

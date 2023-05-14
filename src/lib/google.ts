@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import dayjs from 'dayjs'
 import { prisma } from './prisma'
 import { google } from 'googleapis'
